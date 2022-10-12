@@ -1,8 +1,8 @@
 cryptg
 hachoir
-#pillow
+pillow
 werkzeug
 aiohttp
-#Telethon
+Telethon
 requests
 gunicorn
