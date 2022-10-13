@@ -52,8 +52,9 @@ async def download(event):
                     caption=f"@{sender.username}|[{event.chat_id}](tg://user?id={event.sender_id})/{event.message.id}")
                 id_hex = hex(msg.id)[2:]
                 id = f"{id_hex}/{get_file_name(msg)}"
-                bot_url = f"[share](t.me/{username_bot}?start={id_hex})"
-                await event.reply(f"📎 : [Link]({Config.DOMAIN}/{id})\n🤖 : {bot_url}")
+                bot_url = f"[Get This File on Telegram](t.me/{username_bot}?start={id_hex})"
+                        
+                await event.reply(f"[Downlaod By Browser]({Config.DOMAIN}/{id})\n🤖 : {bot_url}")
                 return
         
             elif id_msg := re.search("/start (.*)", event.raw_text ):
@@ -78,12 +79,11 @@ async def download(event):
                                 forward = await file.forward_to(event.chat_id)
                                 id_name = f"{id_hex}/{get_file_name(msg)}"
                                 bot_url = f"[share](t.me/{username_bot}?start={id_hex})"
-                                forward_reply = await forward.reply(f"will be deleted in 21 seconds. \n\n📎 : [Link]({Config.DOMAIN}/{id_name})\n🤖 : {bot_url}",link_preview=False)
-                                await asyncio.sleep(12)
-                                await forward_reply.edit(f"will be deleted in 10 seconds. \n\n📎 : [Link]({Config.DOMAIN}/{id_name})\n🤖 : {bot_url}")
+                                forward_reply = await forward.reply(f"will be deleted in 60 seconds.Please save this file somewhere else")
+                                await asyncio.sleep(50)
+                                await forward_reply.edit(f"will be deleted in 10 seconds.")
                                 await asyncio.sleep(10)
                                 await forward.delete()
-                                await forward_reply.edit(f"📎 : [Link]({Config.DOMAIN}/{id_name})\n🤖 : {bot_url}",link_preview=True)
                         return
                 except:
                     return await event.reply("404! File Not Found")
