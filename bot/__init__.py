@@ -22,7 +22,7 @@ def get_file_name(message):
     ext = message.file.ext or ""
     return f"file{ext}"
 
-@client.on(events.NewMessage(from_users=5591954930))
+@client.on(events.NewMessage)
 async def download(event):
     
         if (pv := event.is_private) or event.is_group :
